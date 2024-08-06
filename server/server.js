@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
-const {Server} = require('socket.io');
-const cors = require('cors')
+const { Server } = require('socket.io');
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
@@ -22,17 +22,21 @@ app.use(cors({
     credentials: true
 }))
 
-
 io.on('connection', (socket) => {
+
     console.log('New client connected');
+
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     })
-    socket.on('message', (message) => {
-        io.emit('message', message+"_server");
+
+    socket.on('message', () => {
+        setTimeout(()=>{
+        socket.emit('message', "responding from the backend");
+        }, 500)
     })
 })
 
-server.listen(3000, ()=>{
+server.listen(3000, () => {
     console.log('Listening on port 3000')
 })

@@ -42,7 +42,6 @@ export class ChatService {
       const messageHandler = (message: any) => {
         observer.next(message);
       }
-
       this.socket.on('message',messageHandler);
 
       return () => {
