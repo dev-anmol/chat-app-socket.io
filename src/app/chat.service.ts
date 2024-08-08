@@ -33,7 +33,7 @@ export class ChatService {
   }
 
   sendMessage(message: string): void {
-    this.socket.emit('message', message);
+    this.socket.emit('message', {username: "anmol", message: message});
   }
 
   getMessages(): Observable<string> {

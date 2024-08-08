@@ -22,20 +22,23 @@ app.use(cors({
     credentials: true
 }))
 
-io.on('connection', (socket) => {
+io.on('connection', require('./socket.js'))
 
-    console.log('New client connected');
 
-    socket.on('disconnect', () => {
-        console.log('Client disconnected');
-    })
+// io.on('connection', (socket) => {
 
-    socket.on('message', () => {
-        setTimeout(()=>{
-        socket.emit('message', "responding from the backend");
-        }, 500)
-    })
-})
+//     console.log('New client connected');
+
+//     socket.on('disconnect', () => {
+//         console.log('Client disconnected');
+//     })
+
+//     socket.on('message', () => {
+//         setTimeout(()=>{
+//         socket.emit('message', "responding from the backend");
+//         }, 500)
+//     })
+// })
 
 server.listen(3000, () => {
     console.log('Listening on port 3000')
