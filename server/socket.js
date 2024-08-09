@@ -17,7 +17,7 @@ module.exports = function (socket) {
 
         setTimeout(() => {
             socket.emit('message', data.message + " from server")
-        }, 1000)
+        }, 0)
 
         socket.on('disconnect', function () {
             socket.disconnect();
@@ -25,7 +25,5 @@ module.exports = function (socket) {
             console.log('socket with username ' + socket.username + ' disconnected');
 
         })
-
-
     })
 }
